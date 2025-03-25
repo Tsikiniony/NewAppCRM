@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Liste des Clients</h2>
+            <h2>Informations du Clients</h2>
             <a href="/dashboard" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Retour
             </a>
@@ -28,16 +28,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="client : ${clients}">
+                    <tr th:each="client : ${client}">
                         <td th:text="${client['name']}"></td>
                         <td th:text="${client['company_name']}"></td>
                         <td th:text="${client['email']}"></td>
                         <td th:text="${client['city']}"></td>
-                        <td>
-                            <a th:href="@{'/client/' + ${client['external_id']}}" class="btn btn-primary btn-sm">
-                                <i class="bi bi-eye"></i> Détails
-                            </a>
-                        </td>
                     </tr>
                 </tbody>
             </table>

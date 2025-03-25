@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Clients</title>
+    <title>Liste des Projets</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Liste des Clients</h2>
+            <h2>Liste des Projets</h2>
             <a href="/dashboard" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Retour
             </a>
@@ -19,22 +19,21 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Entreprise</th>
-                        <th>Email</th>
-                        <th>Ville</th>
-                        <th>Responsable</th>
+                        <th>Titre</th>
+                        <th>Client</th>
+                        <th>Statut</th>
+                        <th>Date limite</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="client : ${clients}">
-                        <td th:text="${client['name']}"></td>
-                        <td th:text="${client['company_name']}"></td>
-                        <td th:text="${client['email']}"></td>
-                        <td th:text="${client['city']}"></td>
+                    <tr th:each="project : ${projects}">
+                        <td th:text="${project['title']}"></td>
+                        <td th:text="${project['client'] != null ? project['client']['company_name'] : '-'}"></td>
+                        <td th:text="${project['status']}"></td>
+                        <td th:text="${project['deadline']}"></td>
                         <td>
-                            <a th:href="@{'/client/' + ${client['external_id']}}" class="btn btn-primary btn-sm">
+                            <a th:href="@{'/project/' + ${project['external_id']}}" class="btn btn-primary btn-sm">
                                 <i class="bi bi-eye"></i> Détails
                             </a>
                         </td>

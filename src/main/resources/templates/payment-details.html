@@ -21,7 +21,7 @@
                         <h5>Informations du Paiement</h5>
                         <p><strong>ID Facture:</strong> <span th:text="${payment.invoice_id}"></span></p>
                         <p><strong>Date:</strong> <span th:text="${payment.created_at}"></span></p>
-                        <p><strong>Montant:</strong> <span th:text="${payment.amount}"></span></p>
+                        <p><strong>Montant:</strong> <span th:text="${payment.amount/100}"></span></p>
                     </div>
                 </div>
                 

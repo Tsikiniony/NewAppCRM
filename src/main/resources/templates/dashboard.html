@@ -104,27 +104,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/projects">
                         <i class="bi bi-folder"></i> Projets
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-list-task"></i> Tâches
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-file-text"></i> Offres
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/invoices">
                         <i class="bi bi-receipt"></i> Factures
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/payments">
                         <i class="bi bi-cash"></i> Paiements
                     </a>
                 </li>
@@ -316,7 +306,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="invoice : ${invoices}">
-                                <td th:text="${invoice['client_id']}"></td>
+                                <td th:text="${invoice['client']['company_name']}"></td>
                                 <td th:text="${invoice['offer_id']}"></td>
                                 <td th:text="${invoice['status']}"></td>
                             </tr>
@@ -350,7 +340,7 @@
                         <tr th:each="payment : ${payments}">
                             <td th:text="${payment['invoice_id']}"></td>
                             <td th:text="${payment['created_at']}"></td>
-                            <td th:text="${payment['amount']}"></td>
+                            <td th:text="${payment['amount']/100}"></td>
                             <td>
                                 <a th:href="@{'/payment/' + ${payment['external_id']}}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-eye"></i> Détails
