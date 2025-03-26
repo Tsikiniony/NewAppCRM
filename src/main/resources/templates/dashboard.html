@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/clients">
+                    <a class="nav-link" href="#">
                         <i class="bi bi-people"></i> Clients
                     </a>
                 </li>
@@ -110,24 +110,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="bi bi-list-task"></i> Tâches
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-file-text"></i> Offres
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
                         <i class="bi bi-receipt"></i> Factures
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-cash"></i> Paiements
+                    <a class="nav-link" href="/discount-rates">
+                        <i class="bi bi-cash"></i> Taux de remise
                     </a>
                 </li>
+
             </ul>
         </nav>
 
@@ -259,8 +250,8 @@
                             <tr th:each="task : ${tasks}">
                                 <td th:text="${task['title']}"></td>
                                 <td th:text="${task['description']}"></td>
-                                <td th:text="${task['project']['title']}"></td>
-                                <td th:text="${task['client']['company_name']}"></td>
+                                <td th:text="${task['project'] != null ? task['project']['title'] : ''}"></td>
+                                <td th:text="${task['client'] != null ? task['client']['company_name'] : ''}"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -316,7 +307,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="invoice : ${invoices}">
-                                <td th:text="${invoice['client_id']}"></td>
+                                <td th:text="${invoice['client']['company_name']}"></td>
                                 <td th:text="${invoice['offer_id']}"></td>
                                 <td th:text="${invoice['status']}"></td>
                             </tr>
@@ -350,7 +341,7 @@
                         <tr th:each="payment : ${payments}">
                             <td th:text="${payment['invoice_id']}"></td>
                             <td th:text="${payment['created_at']}"></td>
-                            <td th:text="${payment['amount']}"></td>
+                            <td th:text="${payment['amount']/100}"></td>
                             <td>
                                 <a th:href="@{'/payment/' + ${payment['external_id']}}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-eye"></i> Détails
@@ -364,7 +355,6 @@
     </div>
 </div>
 
-    </div>
 </div>
 <script>
 // Fonctions pour les paiements
