@@ -99,25 +99,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/clients">
+                    <a class="nav-link" href="#">
                         <i class="bi bi-people"></i> Clients
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projects">
+                    <a class="nav-link" href="#">
                         <i class="bi bi-folder"></i> Projets
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/invoices">
+                    <a class="nav-link" href="#">
                         <i class="bi bi-receipt"></i> Factures
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/payments">
-                        <i class="bi bi-cash"></i> Paiements
+                    <a class="nav-link" href="/discount-rates">
+                        <i class="bi bi-cash"></i> Taux de remise
                     </a>
                 </li>
+
             </ul>
         </nav>
 
@@ -249,8 +250,8 @@
                             <tr th:each="task : ${tasks}">
                                 <td th:text="${task['title']}"></td>
                                 <td th:text="${task['description']}"></td>
-                                <td th:text="${task['project']['title']}"></td>
-                                <td th:text="${task['client']['company_name']}"></td>
+                                <td th:text="${task['project'] != null ? task['project']['title'] : ''}"></td>
+                                <td th:text="${task['client'] != null ? task['client']['company_name'] : ''}"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -354,7 +355,6 @@
     </div>
 </div>
 
-    </div>
 </div>
 <script>
 // Fonctions pour les paiements
